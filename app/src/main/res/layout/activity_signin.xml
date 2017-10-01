@@ -13,7 +13,8 @@
             android:id="@+id/Btn_Main1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="가정의학과" />
+            android:text="가정의학과"
+            android:onClick="CliBtn_Main1"/>
 
         <Button
             android:id="@+id/Btn_Main2"
