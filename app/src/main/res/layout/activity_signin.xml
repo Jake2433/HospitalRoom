@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:stretchColumns="*"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="0dp"
+        android:layout_weight="1">
         <Button
             android:id="@+id/Btn_Main1"
             android:layout_width="match_parent"
@@ -22,38 +22,54 @@
             android:text="산부인과" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/Btn_Main3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="신경외과" />
 
         <Button
             android:id="@+id/Btn_Main4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="안과" />
     </TableRow>
 
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/Btn_Main5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="이비인후과" />
 
         <Button
             android:id="@+id/Btn_Main6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="피부과" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/Btn_Main7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="흉부외과" />
 
         <Button
             android:id="@+id/Btn_Main8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="기타" />
     </TableRow>
 
