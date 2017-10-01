@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/SignUp_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tv_dupresult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="중복확인 해주세요" />
+
+    <Button
+        android:id="@+id/Btn_DupChk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="중복확인"
+        android:onClick="DupChk"/>
+
+    <EditText
+        android:id="@+id/SignUp_PW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PW"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/SignUp_PW2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PW(RE)"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_pwcheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="비밀번호를 입력해주세요" />
+
+    <EditText
+        android:id="@+id/SignUp_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/SignUp_Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/SignUp_Phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/Btn_Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:onClick="insert"/>
+</LinearLayout>

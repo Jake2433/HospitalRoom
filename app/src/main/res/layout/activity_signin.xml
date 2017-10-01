@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/Btn_Main1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="가정의학과" />
+
+        <Button
+            android:id="@+id/Btn_Main2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="산부인과" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/Btn_Main3"
+            android:text="신경외과" />
+
+        <Button
+            android:id="@+id/Btn_Main4"
+            android:text="안과" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/Btn_Main5"
+            android:text="이비인후과" />
+
+        <Button
+            android:id="@+id/Btn_Main6"
+            android:text="피부과" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/Btn_Main7"
+            android:text="흉부외과" />
+
+        <Button
+            android:id="@+id/Btn_Main8"
+            android:text="기타" />
+    </TableRow>
+
+
+</TableLayout>
