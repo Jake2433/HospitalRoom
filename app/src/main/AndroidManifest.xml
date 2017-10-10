@@ -20,6 +20,7 @@
         <activity android:name=".SignUp"/>
         <activity android:name=".SignIn"/>
         <activity android:name=".Room"/>
+        <activity android:name=".PatientInfo"/>
     </application>
 
 </manifest>

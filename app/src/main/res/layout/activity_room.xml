@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="병실입니다" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="온도 / 습도 : " />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0 ºC / 0 F" />
+
+    <Button
+        android:id="@+id/Btn_FirstP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliFirstP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_SecondP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliSecondP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_ThirdP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliThirdP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_FourthP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliFourthP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_FifthP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliFifthP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_SixthP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CliSixthP"
+        android:text="EMPTY" />
+
+    <Button
+        android:id="@+id/Btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="입실"
+        android:onClick="CliAdd"/>
+
+    <Button
+        android:id="@+id/Btn_rmv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="퇴실"
+        android:onClick="CliRmv"/>
+
+</LinearLayout>
