@@ -104,26 +104,27 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 startActivity((new Intent(MainActivity.this, SignIn.class)));
+
                 finish();
             }
             else {
                 Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
-/*
+
                 //예외적으로 로그인하게 테스트용
-                startActivity((new Intent(MainActivity.this, SignIn.class)));
+                startActivity((new Intent(MainActivity.this, Room.class)));
                 finish();
-*/
+
             }
         }
         catch(Exception e)
         {
             dialog.dismiss();
             System.out.println("Exception : " + e.getMessage());
-/*
+
             //예외적으로 로그인하게 테스트용
-            startActivity((new Intent(MainActivity.this, SignIn.class)));
+            startActivity((new Intent(MainActivity.this, Room.class)));
             finish();
-            */
+
         }
 
     }

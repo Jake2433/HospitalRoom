@@ -51,6 +51,8 @@ public class PatientInfo extends Activity {
     private EditText PEnd;
     private EditText PMemo;
 
+    public String Nth;
+
     private Button FirstButton;
 
     HttpPost httppost;
@@ -68,22 +70,29 @@ public class PatientInfo extends Activity {
 
         Intent intent = getIntent();
 
+        Nth = intent.getStringExtra("Nth");
+
         PName = (TextView)findViewById(R.id.ET_NameP);
         PName.setText(intent.getStringExtra("PATIENT_NAME"));
 
         SelectedPos = intent.getIntExtra("CURRENT_POS",0);
 
         PSex = (EditText)findViewById(R.id.ET_SexP);
+        PSex.setText(intent.getStringExtra("S"));
         PBirth = (EditText)findViewById(R.id.ET_BirthP);
+        PBirth.setText(intent.getStringExtra("B"));
 
         PPhone = (EditText) findViewById(R.id.ET_PhoneP);
+        PPhone.setText(intent.getStringExtra("P"));
         PPhone.setInputType(InputType.TYPE_CLASS_PHONE);
         PPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         PStart = (EditText)findViewById(R.id.ET_StartP);
+        PStart.setText(intent.getStringExtra("PS"));
         PEnd = (EditText)findViewById(R.id.ET_EndP);
+        PEnd.setText(intent.getStringExtra("PE"));
         PMemo = (EditText)findViewById(R.id.ET_MemoP);
-
+        PMemo.setText(intent.getStringExtra("M"));
     }
 
     public void insert(View view) {
@@ -94,8 +103,9 @@ public class PatientInfo extends Activity {
         String SStart = PStart.getText().toString();
         String SEnd = PEnd.getText().toString();
         String SMemo = PMemo.getText().toString();
+        String SNth = Nth.toString();
 
-        insertoToDatabase(SName, SSex, SBirth, SPhone, SStart, SEnd, SMemo);
+        insertoToDatabase(SName, SSex, SBirth, SPhone, SStart, SEnd, SMemo, SNth);
 
       //  FirstButton.setText(SName);
         Intent intent = new Intent(getApplicationContext(), Room.class);
@@ -105,7 +115,7 @@ public class PatientInfo extends Activity {
 
     }
 
-    private void insertoToDatabase(String SName, String SSex, String SBirth, String SPhone, String SStart, String SEnd, String SMemo) {
+    private void insertoToDatabase(String SName, String SSex, String SBirth, String SPhone, String SStart, String SEnd, String SMemo, String SNth) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
             @Override
@@ -130,6 +140,7 @@ public class PatientInfo extends Activity {
                     String SStart = (String) params[4];
                     String SEnd = (String) params[5];
                     String SMemo = (String)params[6];
+                    String SNth = (String)params[7];
 
                     String link = "http://192.168.0.9/hospitalroom/addpatient.php";
                     String data = URLEncoder.encode("Name", "UTF-8") + "=" + URLEncoder.encode(SName, "UTF-8");
@@ -139,6 +150,7 @@ public class PatientInfo extends Activity {
                     data += "&" + URLEncoder.encode("Start", "UTF-8") + "=" + URLEncoder.encode(SStart, "UTF-8");
                     data += "&" + URLEncoder.encode("End", "UTF-8") + "=" + URLEncoder.encode(SEnd, "UTF-8");
                     data += "&" + URLEncoder.encode("Memo", "UTF-8") + "=" + URLEncoder.encode(SMemo, "UTF-8");
+                    data += "&" + URLEncoder.encode("Nth", "UTF-8") + "=" + URLEncoder.encode(SNth, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -166,13 +178,11 @@ public class PatientInfo extends Activity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(SName, SSex, SBirth, SPhone, SStart, SEnd, SMemo);
+        task.execute(SName, SSex, SBirth, SPhone, SStart, SEnd, SMemo, SNth);
     }
 
     public void DupChk(View view)
     {
-        //    String Id = editTextId.getText().toString();
-
         try {
             httpclient = new DefaultHttpClient();
             httppost = new HttpPost("http://192.168.0.9/hospitalroom/duplication.php");
@@ -182,14 +192,7 @@ public class PatientInfo extends Activity {
             response = httpclient.execute(httppost);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             final String response = httpclient.execute(httppost, responseHandler);
-        /*    System.out.println("Response : " + response);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    textViewDupCheck.setText("Response from PHP : " + response);
-                    dialog.dismiss();
-                }
-            });*/
+
 
             if (response.equalsIgnoreCase("User Found")) {
 
@@ -202,19 +205,14 @@ public class PatientInfo extends Activity {
                 });
                 alert.setMessage("이미 병실에 등록되어 있습니다.");
                 alert.show();
-
-
             }
             else {
-                // Toast.makeText(SignUp.this, "Login Fail", Toast.LENGTH_SHORT).show();
-            //    textViewDupCheck.setText("사용하실 수 있는 아이디입니다");
             }
         }
         catch(Exception e)
         {
             dialog.dismiss();
             System.out.println("Exception : " + e.getMessage());
-
         }
     }
 }
