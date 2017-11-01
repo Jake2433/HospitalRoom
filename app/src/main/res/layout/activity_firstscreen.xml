@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#002060"
+    >
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:text="히포크라테스 선서문"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Btn_menu"
+        android:layout_width="155dp"
+        android:layout_height="59dp"
+        android:text="진료하기"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="82dp"
+        android:layout_marginRight="128dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.96"
+        android:onClick="mOnClick"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/hippo"
+        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/Btn_menu"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="268dp"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:text="이제 의업에 종사할 허락을 받음에,\n나의 생애를 인류봉사에 바칠 것을 엄숙히 서약하노라.\n나의 은사에 대하여 존경과 감사를 드리겠노라.\n나의 양심과 위엄으로서 의술을 베풀겠노라.\n나의 환자의 건강과 생명을 첫째로 생각하겠노라.\n나의 환자가 알려준 모든 내정의 비밀을 지키겠노라.\n나는 의업의 고귀한 전통과 명예를 유지하겠노라.\n나는 동업자를 형제처럼 여기겠노라.\n나는 인류, 종교, 국적, 정당, 정파 또는\n사회적 지위 여하를 초월하여,\n오직 환자에 대한 나의 의무를 지키겠노라.\n나는 인간의 생명을 그 수태된 때로부터\n지상의 것으로 존중히 여기겠노라.\n비록 위협을 당할지라도 나의 지식을\n인도에 어긋나게 쓰지 않겠노라.\n이상의 서약을 나의 자유의사로 나의 명예를 받들어 하노라."
+        android:layout_marginLeft="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+</android.support.constraint.ConstraintLayout>

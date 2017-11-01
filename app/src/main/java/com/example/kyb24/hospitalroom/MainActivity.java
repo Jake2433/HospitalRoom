@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -29,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ViewFlipper Vf;
-    Button BtnSignIn, BtnSignUp;
+    ImageButton BtnSignIn, BtnSignUp;
     EditText inputID, inputPW;
     HttpPost httppost;
     StringBuffer buffer;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        BtnSignUp = (Button)findViewById(R.id.Btn_SignUp);
-        BtnSignIn = (Button)findViewById(R.id.Btn_SignIn);
+        BtnSignUp = (ImageButton)findViewById(R.id.Btn_SignUp);
+        BtnSignIn = (ImageButton)findViewById(R.id.Btn_SignIn);
         inputID = (EditText)findViewById(R.id.Edit_ID);
         inputPW = (EditText)findViewById(R.id.Edit_PW);
         tv = (TextView)findViewById(R.id.tv_result);
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                startActivity((new Intent(MainActivity.this, SignIn.class)));
+                startActivity((new Intent(MainActivity.this, FirstScreen.class)));
 
                 finish();
             }
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
 
                 //예외적으로 로그인하게 테스트용
-                startActivity((new Intent(MainActivity.this, Room.class)));
+                startActivity((new Intent(MainActivity.this, FirstScreen.class)));
                 finish();
 
             }
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Exception : " + e.getMessage());
 
             //예외적으로 로그인하게 테스트용
-            startActivity((new Intent(MainActivity.this, Room.class)));
+            startActivity((new Intent(MainActivity.this, FirstScreen.class)));
             finish();
 
         }

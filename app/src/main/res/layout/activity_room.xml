@@ -1,80 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="병실입니다" />
-
-    <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="온도 / 습도 : " />
+        android:text="온도 / 습도 : "
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="0 ºC / 0 F" />
+        android:text="0 ºC / 0 F"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/Btn_FirstP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
         android:onClick="CliFirstP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        app:layout_constraintLeft_toRightOf="@+id/Btn_SixthP"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_SecondP" />
 
     <Button
         android:id="@+id/Btn_SecondP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
         android:onClick="CliSecondP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_ThirdP"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/Btn_FifthP"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
         android:id="@+id/Btn_ThirdP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:onClick="CliThirdP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/Btn_FourthP"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="58dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/Btn_FourthP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="8dp"
         android:onClick="CliFourthP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="57dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/Btn_FifthP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
         android:onClick="CliFifthP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_FourthP"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/Btn_SixthP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
         android:onClick="CliSixthP"
-        android:text="EMPTY" />
+        android:text="EMPTY"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_FifthP" />
 
     <Button
         android:id="@+id/Btn_add"
-        android:layout_width="match_parent"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:text="입실"
-        android:onClick="CliAdd"/>
+        android:onClick="CliAdd"
+        app:layout_constraintRight_toLeftOf="@+id/Btn_rmv"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        android:layout_marginTop="82dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_SixthP" />
 
     <Button
         android:id="@+id/Btn_rmv"
-        android:layout_width="match_parent"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:text="퇴실"
-        android:onClick="CliRmv"/>
+        android:onClick="CliRmv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        android:layout_marginTop="81dp"
+        app:layout_constraintTop_toBottomOf="@+id/Btn_FirstP" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
