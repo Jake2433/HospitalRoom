@@ -4,27 +4,35 @@
     tools:context="com.example.kyb24.hospitalroom.FirstScreen">
 
     <item android:id="@+id/popup_family"
-        android:title="가정의학과"/>
+        android:title="정형외과"
+        android:icon="@drawable/bones"/>
 
     <item android:id="@+id/popup_moms"
-        android:title="산부인과"/>
+        android:title="산부인과"
+        android:icon="@drawable/moms"/>
 
     <item android:id="@+id/popup_neural"
-        android:title="신경외과"/>
+        android:title="신경외과"
+        android:icon="@drawable/neural"/>
 
     <item android:id="@+id/popup_eyes"
-        android:title="안과"/>
+        android:title="치과"
+        android:icon="@drawable/teeth"/>
 
     <item android:id="@+id/popup_earsandnose"
-        android:title="이비인후과"/>
+        android:title="이비인후과"
+        android:icon="@drawable/ears"/>
 
     <item android:id="@+id/popup_skin"
-        android:title="피부과"/>
+        android:title="성형외과"
+        android:icon="@drawable/plasticsurgery"/>
 
     <item android:id="@+id/popup_chest"
-        android:title="흉부외과"/>
+        android:title="흉부외과"
+        android:icon="@drawable/chest"/>
 
     <item android:id="@+id/popup_etc"
-        android:title="기타"/>
+        android:title="기타"
+        android:icon="@drawable/etc"/>
 
 </menu>

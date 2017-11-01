@@ -6,15 +6,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuBuilder;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-
 
 /**
  * Created by kyb24 on 2017-11-01.
@@ -22,76 +24,79 @@ import android.widget.PopupMenu;
 
 public class FirstScreen extends Activity {
 
-    Button mBtn;
+
+    ImageButton mBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_firstscreen);
 
         //버튼 등록
-        mBtn = (Button)findViewById(R.id.Btn_menu);
+        mBtn = (ImageButton) findViewById(R.id.Btn_menu);
     }
 
     //버튼이 눌렸을때 여기로옴
 
-    public void mOnClick(View v){
+    public void mOnClick(View v) {
 
-        //팝업 메뉴 객체 만듬
-        PopupMenu popup = new PopupMenu(this, v);
+        MenuBuilder menuBuilder = new MenuBuilder(this);
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.popupmenu, menuBuilder);
+        MenuPopupHelper optionsMenu = new MenuPopupHelper(this, menuBuilder, v);
+        optionsMenu.setForceShowIcon(true);
 
-        //xml파일에 메뉴 정의한것을 가져오기위해서 전개자 선언
-        MenuInflater inflater = popup.getMenuInflater();
-        Menu menu = popup.getMenu();
-
-        //실제 메뉴 정의한것을 가져오는 부분 menu 객체에 넣어줌
-        inflater.inflate(R.menu.popupmenu, menu);
-
-        //메뉴가 클릭했을때 처리하는 부분
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        menuBuilder.setCallback(new MenuBuilder.Callback() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                // TODO Auto-generated method stub
-                //각 메뉴별 아이디를 조사한후 할일을 적어줌
-
-                switch(item.getItemId()){
+            public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
+                switch (item.getItemId()) {
                     case R.id.popup_family:
-                        WhatChosen("가정의학과","1");
+                        WhatChosen("정형외과", "1");
                         break;
 
                     case R.id.popup_moms:
-                        WhatChosen("산부인과","2");
+                        WhatChosen("산부인과", "2");
                         break;
 
                     case R.id.popup_neural:
-                        WhatChosen("신경외과","3");
+                        WhatChosen("신경외과", "3");
                         break;
 
                     case R.id.popup_eyes:
-                        WhatChosen("안과","4");
+                        WhatChosen("치과", "4");
                         break;
 
                     case R.id.popup_earsandnose:
-                        WhatChosen("이비인후과","5");
+                        WhatChosen("이비인후과", "5");
                         break;
 
                     case R.id.popup_skin:
-                        WhatChosen("피부과","6");
+                        WhatChosen("성형외과", "6");
                         break;
 
                     case R.id.popup_chest:
-                        WhatChosen("흉부외과","7");
+                        WhatChosen("흉부외과", "7");
                         break;
 
                     case R.id.popup_etc:
-                        WhatChosen("기타","8");
+                        WhatChosen("기타", "8");
                         break;
+                    default:
+                        return false;
                 }
                 return false;
             }
+
+            @Override
+            public void onMenuModeChange(MenuBuilder menu) {
+            }
         });
-        popup.show();
+
+        optionsMenu.show();
+
     }
 
     public void WhatChosen(final String name, final String floor)

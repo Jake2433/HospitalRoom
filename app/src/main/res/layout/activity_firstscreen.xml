@@ -6,7 +6,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#002060"
-    >
+    tools:context="com.example.kyb24.hospitalroom.FirstScreen">
 
     <TextView
         android:id="@+id/textView11"
@@ -21,36 +21,24 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/Btn_menu"
-        android:layout_width="155dp"
-        android:layout_height="59dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        app:srcCompat="@drawable/move"
         android:text="진료하기"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="82dp"
-        android:layout_marginRight="128dp"
+        android:layout_marginRight="106dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.96"
+        android:layout_marginBottom="53dp"
         android:onClick="mOnClick"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/hippo"
-        app:layout_constraintHorizontal_bias="0.498"
-        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintBottom_toTopOf="@+id/Btn_menu"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -66,5 +54,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imageView3"
+        android:layout_width="191dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/hippo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="22dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
 </android.support.constraint.ConstraintLayout>

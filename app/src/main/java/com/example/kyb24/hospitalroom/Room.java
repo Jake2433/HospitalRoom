@@ -13,9 +13,12 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -60,12 +63,22 @@ public class Room extends Activity
     private Button ClickedBtnP5;
     private Button ClickedBtnP6;
 
+    private ImageView ClickedIvP1;
+    private ImageView ClickedIvP2;
+    private ImageView ClickedIvP3;
+    private ImageView ClickedIvP4;
+    private ImageView ClickedIvP5;
+    private ImageView ClickedIvP6;
+
+
     private String movedName;
     private int currentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_room);
 
         ClickedBtnP1 = (Button) findViewById(R.id.Btn_FirstP);
@@ -74,6 +87,13 @@ public class Room extends Activity
         ClickedBtnP4 = (Button) findViewById(R.id.Btn_FourthP);
         ClickedBtnP5 = (Button) findViewById(R.id.Btn_FifthP);
         ClickedBtnP6 = (Button) findViewById(R.id.Btn_SixthP);
+
+        ClickedIvP1 = (ImageView) findViewById(R.id.Iv_FirstP);
+        ClickedIvP2 = (ImageView) findViewById(R.id.Iv_SecondP);
+        ClickedIvP3 = (ImageView) findViewById(R.id.Iv_ThirdP);
+        ClickedIvP4 = (ImageView) findViewById(R.id.Iv_FourthP);
+        ClickedIvP5 = (ImageView) findViewById(R.id.Iv_FifthP);
+        ClickedIvP6 = (ImageView) findViewById(R.id.Iv_SixthP);
 
         try {
             httpclient = new DefaultHttpClient();
@@ -195,6 +215,13 @@ public class Room extends Activity
         ClickedBtnP4.setOnClickListener(this);
         ClickedBtnP5.setOnClickListener(this);
         ClickedBtnP6.setOnClickListener(this);
+
+        ClickedIvP1.setOnClickListener(this);
+        ClickedIvP2.setOnClickListener(this);
+        ClickedIvP3.setOnClickListener(this);
+        ClickedIvP4.setOnClickListener(this);
+        ClickedIvP5.setOnClickListener(this);
+        ClickedIvP6.setOnClickListener(this);
     }
 
     public void CliAdd(View v) {
@@ -314,25 +341,43 @@ public class Room extends Activity
             case R.id.Btn_FirstP:
                     myfunc(ClickedBtnP1, "0");
                 break;
+            case R.id.Iv_FirstP:
+                myfunc(ClickedBtnP1,"0");
+                break;
 
             case R.id.Btn_SecondP:
                     myfunc(ClickedBtnP2, "1");
+                break;
+            case R.id.Iv_SecondP:
+                myfunc(ClickedBtnP2,"1");
                 break;
 
             case R.id.Btn_ThirdP:
                     myfunc(ClickedBtnP3, "2");
                 break;
+            case R.id.Iv_ThirdP:
+                myfunc(ClickedBtnP3,"2");
+                break;
 
             case R.id.Btn_FourthP:
                     myfunc(ClickedBtnP4, "3");
+                break;
+            case R.id.Iv_FourthP:
+                myfunc(ClickedBtnP4,"3");
                 break;
 
             case R.id.Btn_FifthP:
                     myfunc(ClickedBtnP5,"4");
                 break;
+            case R.id.Iv_FifthP:
+                myfunc(ClickedBtnP5,"4");
+                break;
 
             case R.id.Btn_SixthP:
                     myfunc(ClickedBtnP6, "5");
+                break;
+            case R.id.Iv_SixthP:
+                myfunc(ClickedBtnP6,"5");
                 break;
 
             default:
