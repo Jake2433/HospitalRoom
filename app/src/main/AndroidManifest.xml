@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kyb24.hospitalroom" >
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +25,8 @@
         <activity android:name=".Room"/>
         <activity android:name=".PatientInfo"/>
         <activity android:name=".FirstScreen"/>
+        <activity android:name=".Bluetooth.DataListActivity"/>
+        <activity android:name =".Bluetooth.DeviceListActivity"/>
     </application>
 
 </manifest>

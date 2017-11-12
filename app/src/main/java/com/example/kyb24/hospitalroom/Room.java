@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.kyb24.hospitalroom.Bluetooth.DataListActivity;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -63,12 +65,15 @@ public class Room extends Activity
     private Button ClickedBtnP5;
     private Button ClickedBtnP6;
 
+    private Button ClickedBtnBlue;
+
     private ImageView ClickedIvP1;
     private ImageView ClickedIvP2;
     private ImageView ClickedIvP3;
     private ImageView ClickedIvP4;
     private ImageView ClickedIvP5;
     private ImageView ClickedIvP6;
+
 
 
     private String movedName;
@@ -87,6 +92,8 @@ public class Room extends Activity
         ClickedBtnP4 = (Button) findViewById(R.id.Btn_FourthP);
         ClickedBtnP5 = (Button) findViewById(R.id.Btn_FifthP);
         ClickedBtnP6 = (Button) findViewById(R.id.Btn_SixthP);
+
+        ClickedBtnBlue = (Button)findViewById(R.id.Btn_blth);
 
         ClickedIvP1 = (ImageView) findViewById(R.id.Iv_FirstP);
         ClickedIvP2 = (ImageView) findViewById(R.id.Iv_SecondP);
@@ -216,12 +223,20 @@ public class Room extends Activity
         ClickedBtnP5.setOnClickListener(this);
         ClickedBtnP6.setOnClickListener(this);
 
+        ClickedBtnBlue.setOnClickListener(this);
+
         ClickedIvP1.setOnClickListener(this);
         ClickedIvP2.setOnClickListener(this);
         ClickedIvP3.setOnClickListener(this);
         ClickedIvP4.setOnClickListener(this);
         ClickedIvP5.setOnClickListener(this);
         ClickedIvP6.setOnClickListener(this);
+    }
+
+    public void CliBluetooth(View v)
+    {
+        Intent intent = new Intent(this,DataListActivity.class);
+        startActivity(intent);
     }
 
     public void CliAdd(View v) {
@@ -338,6 +353,9 @@ public class Room extends Activity
     public void onClick(View v) {
 
         switch (v.getId()) {
+            case R.id.Btn_blth:
+                CliBluetooth(v);
+                break;
             case R.id.Btn_FirstP:
                     myfunc(ClickedBtnP1, "0");
                 break;
