@@ -4,21 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.view.menu.MenuPopupHelper;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
-
-import com.example.kyb24.hospitalroom.Bluetooth.DataListActivity;
 
 /**
  * Created by kyb24 on 2017-11-01.
@@ -26,23 +20,17 @@ import com.example.kyb24.hospitalroom.Bluetooth.DataListActivity;
 
 public class FirstScreen extends Activity {
 
-
     ImageButton mBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_firstscreen);
 
-        //버튼 등록
         mBtn = (ImageButton) findViewById(R.id.Btn_menu);
     }
-
-    //버튼이 눌렸을때 여기로옴
-
     public void mOnClick(View v) {
 
         MenuBuilder menuBuilder = new MenuBuilder(this);
@@ -116,8 +104,6 @@ public class FirstScreen extends Activity {
         {
             adapter.add(floor+"0"+i+"호");
         }
-
-        // 버튼 생성
         alertBuilder.setNegativeButton("취소",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -126,7 +112,6 @@ public class FirstScreen extends Activity {
                     }
                 });
 
-        // Adapter 셋팅
         alertBuilder.setAdapter(adapter,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,

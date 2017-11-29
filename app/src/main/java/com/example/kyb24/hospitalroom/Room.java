@@ -3,8 +3,6 @@ package com.example.kyb24.hospitalroom;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -12,22 +10,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,23 +36,18 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.UUID;
+
+import static com.example.kyb24.hospitalroom.Util.serverAddress;
 
 /**
  * Created by kyb24 on 2017-10-02.
@@ -99,11 +88,13 @@ public class Room extends Activity
 
     private ArrayAdapter<String> messageAdapter;
     private String value;
-    private TextView tv;
+    private TextView tv_temp;
+    private TextView tv_humi;
+    private TextView tv_gas;
 
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothChat chat;
-    private Button buttonConnect;
+    private ImageView buttonConnect;
 
     private UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
@@ -123,7 +114,7 @@ public class Room extends Activity
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
-        buttonConnect = (Button) findViewById(R.id.button_connect);
+        buttonConnect = (ImageView) findViewById(R.id.button_connect);
         buttonConnect.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -144,7 +135,9 @@ public class Room extends Activity
 
         messageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
-        tv = (TextView)findViewById(R.id.tv_value);
+        tv_temp = (TextView)findViewById(R.id.tv_temp);
+        tv_humi = (TextView)findViewById(R.id.tv_humi);
+        tv_gas = (TextView)findViewById(R.id.tv_gas);
 
         ClickedBtnP1 = (Button) findViewById(R.id.Btn_FirstP);
         ClickedBtnP2 = (Button) findViewById(R.id.Btn_SecondP);
@@ -162,7 +155,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient1.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient1.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -176,7 +169,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient2.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient2.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -190,7 +183,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient3.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient3.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -204,7 +197,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient4.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient4.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -218,7 +211,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient5.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient5.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -233,7 +226,7 @@ public class Room extends Activity
 
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/patientlist/patient6.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/patientlist/patient6.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
@@ -327,21 +320,81 @@ public class Room extends Activity
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case CONNECTED:
-                    buttonConnect.setText("Disconnect");
+                    buttonConnect.setImageResource(R.drawable.disconnection);
                     break;
                 case DISCONNECTED:
-                    buttonConnect.setText("Connect to bluetooth device");
+                    buttonConnect.setImageResource(R.drawable.bluetooth);
                     chat = null;
                     break;
                 case MESSAGE_READ:
                     try {
                         // Encoding with "EUC-KR" to read 한글
                         messageAdapter.add("< " + new String((byte[]) msg.obj, 0, msg.arg1, "EUC-KR"));
-                        value = "< " + new String((byte[]) msg.obj, 0, msg.arg1, "EUC-KR");
-                        tv.setText(value);
+                        value = new String((byte[]) msg.obj, 0, msg.arg1, "EUC-KR");
+                      //  tv.setText(value);
 
-                    } catch (UnsupportedEncodingException e) {
-                    }
+                        StringTokenizer tokens = new StringTokenizer(value);
+                        String temp = tokens.nextToken(",");
+                        String humi = tokens.nextToken(",");
+                        String gas = tokens.nextToken(",");
+                        String fire = tokens.nextToken(",");
+                        String flex1 = tokens.nextToken(",");
+                        String flex2 =  tokens.nextToken(",");
+                        String flex3 = tokens.nextToken(",");
+
+
+                        tv_temp.setText(temp);
+                        tv_humi.setText(humi);
+                        tv_gas.setText(gas);
+
+                        int fire_value = Integer.parseInt(fire);
+                        if(fire_value<150)
+                        {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(Room.this);
+                            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();     //닫기
+                                }
+                            });
+                            alert.setMessage("!!!!!화재발생!!!!!");
+                            alert.show();
+                        }
+
+                        int flex1_value = Integer.parseInt(flex1);
+                        if(flex1_value<50)
+                        {
+                            ClickedBtnP4.setTextColor(Color.parseColor("#9df761"));
+                        }
+                        else
+                        {
+                            ClickedBtnP4.setTextColor(Color.parseColor("#FFFFFF"));
+                        }
+
+                        int flex2_value = Integer.parseInt(flex2);
+                        if(flex2_value<50)
+                        {
+                            ClickedBtnP5.setTextColor(Color.parseColor("#9df761"));
+                        }
+                        else
+                        {
+                            ClickedBtnP5.setTextColor(Color.parseColor("#FFFFFF"));
+                        }
+
+                        int flex3_value = Integer.parseInt(flex3);
+                        if(flex3_value<60)
+                        {
+                            ClickedBtnP6.setTextColor(Color.parseColor("#9df761"));
+                        }
+                        else
+                        {
+                            ClickedBtnP6.setTextColor(Color.parseColor("#FFFFFF"));
+                        }
+
+
+
+
+                    } catch (UnsupportedEncodingException e) {}
                     break;
                 case MESSAGE_WRITE:
                     messageAdapter.add("> " + new String((byte[]) msg.obj));
@@ -414,8 +467,7 @@ public class Room extends Activity
     public void CliAdd(View v) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(
                 Room.this);
-        //   alertBuilder.setIcon(R.drawable.);
-        alertBuilder.setTitle("처리할 업무를 선택해주세요");
+        alertBuilder.setTitle("입실할 자리를 선택해주세요");
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 Room.this,
                 android.R.layout.select_dialog_singlechoice);
@@ -522,12 +574,97 @@ public class Room extends Activity
 
     }
 
+    public void CliRmv(View v)
+    {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(
+                Room.this);
+        alertBuilder.setTitle("퇴실할 자리를 선택해주세요");
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                Room.this,
+                android.R.layout.select_dialog_singlechoice);
+
+        if (!ClickedBtnP1.getText().toString().equals("EMPTY")) {
+            adapter.add("자리1");
+        }
+        if (!ClickedBtnP2.getText().toString().equals("EMPTY")) {
+            adapter.add("자리2");
+        }
+        if (!ClickedBtnP3.getText().toString().equals("EMPTY")) {
+            adapter.add("자리3");
+        }
+        if (!ClickedBtnP4.getText().toString().equals("EMPTY")) {
+            adapter.add("자리4");
+        }
+        if (!ClickedBtnP5.getText().toString().equals("EMPTY")) {
+            adapter.add("자리5");
+        }
+        if (!ClickedBtnP6.getText().toString().equals("EMPTY")) {
+            adapter.add("자리6");
+        }
+        else if(ClickedBtnP1.getText().toString().equals("EMPTY")
+                && ClickedBtnP2.getText().toString().equals("EMPTY")
+                && ClickedBtnP3.getText().toString().equals("EMPTY")
+                && ClickedBtnP4.getText().toString().equals("EMPTY")
+                && ClickedBtnP5.getText().toString().equals("EMPTY")
+                && ClickedBtnP6.getText().toString().equals("EMPTY")) {
+            alertBuilder.setMessage("이미 모두 비어있습니다.");
+        }
+        // 버튼 생성
+        alertBuilder.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        // Adapter 셋팅
+        alertBuilder.setAdapter(adapter,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int id) {
+
+                        final int count = id;
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(Room.this);
+
+                                switch (adapter.getItem(count))
+                                {
+                                    case "자리1":
+                                        ClickedBtnP1.setText("EMPTY");
+                                        currentPosition = 1;
+                                        break;
+                                    case "자리2":
+                                        ClickedBtnP2.setText("EMPTY");
+                                        currentPosition = 2;
+                                        break;
+                                    case "자리3":
+                                        ClickedBtnP3.setText("EMPTY");
+                                        currentPosition = 3;
+                                        break;
+                                    case "자리4":
+                                        ClickedBtnP4.setText("EMPTY");
+                                        currentPosition = 4;
+                                        break;
+                                    case "자리5":
+                                        ClickedBtnP5.setText("EMPTY");
+                                        currentPosition = 5;
+                                        break;
+                                    case "자리6":
+                                        ClickedBtnP6.setText("EMPTY");
+                                        currentPosition = 6;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                    }
+                });
+        alertBuilder.show();
+    }
+
     public void onClick(View v) {
 
         switch (v.getId()) {
-        /*    case R.id.Btn_blth:
-                CliBluetooth(v);
-                break;*/
             case R.id.Btn_FirstP:
                     myfunc(ClickedBtnP1, "0");
                 break;
@@ -627,22 +764,22 @@ public class Room extends Activity
                                         httpclient = new DefaultHttpClient();
                                         switch (n) {
                                             case "0":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo1.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo1.php");
                                                 break;
                                             case "1":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo2.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo2.php");
                                                 break;
                                             case "2":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo3.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo3.php");
                                                 break;
                                             case "3":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo4.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo4.php");
                                                 break;
                                             case "4":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo5.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo5.php");
                                                 break;
                                             case "5":
-                                                httppost = new HttpPost("http://192.168.0.9/hospitalroom/readpatient/readpatientinfo6.php");
+                                                httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/readpatient/readpatientinfo6.php");
                                                 break;
                                             default:
                                                 break;

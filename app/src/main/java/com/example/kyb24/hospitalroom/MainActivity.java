@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,6 +26,8 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.kyb24.hospitalroom.Util.serverAddress;
+
 public class MainActivity extends AppCompatActivity {
 
     ViewFlipper Vf;
@@ -44,11 +45,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         //상태바 없애기
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -72,14 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 }).start();
             }
         });
-
     }
 
     void login() {
-
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/signin.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/signin.php");
             nameValuePairs = new ArrayList<NameValuePair>(2);
             nameValuePairs.add(new BasicNameValuePair("userid", inputID.getText().toString()));
             nameValuePairs.add(new BasicNameValuePair("userpw", inputPW.getText().toString()));
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -109,25 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
             else {
-                Toast.makeText(MainActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
-
-                //예외적으로 로그인하게 테스트용
-                startActivity((new Intent(MainActivity.this, FirstScreen.class)));
-                finish();
-
+                Toast.makeText(MainActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
             }
         }
         catch(Exception e)
         {
             dialog.dismiss();
             System.out.println("Exception : " + e.getMessage());
-
-            //예외적으로 로그인하게 테스트용
-            startActivity((new Intent(MainActivity.this, FirstScreen.class)));
-            finish();
-
         }
-
     }
 
     public void CliSignUp(View view)

@@ -2,19 +2,16 @@ package com.example.kyb24.hospitalroom;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.telephony.PhoneNumberUtils;
 import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +34,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.kyb24.hospitalroom.Util.serverAddress;
 
 /**
  * Created by kyb24 on 2017-10-10.
@@ -110,12 +109,10 @@ public class PatientInfo extends Activity {
 
         insertoToDatabase(SName, SSex, SBirth, SPhone, SStart, SEnd, SMemo, SNth);
 
-      //  FirstButton.setText(SName);
         Intent intent = new Intent(getApplicationContext(), Room.class);
         intent.putExtra("COMPLETE_NAME", SName);
         intent.putExtra("COMPLETE_POS",SelectedPos);
         startActivity(intent);
-
     }
 
     private void insertoToDatabase(String SName, String SSex, String SBirth, String SPhone, String SStart, String SEnd, String SMemo, String SNth) {
@@ -145,7 +142,7 @@ public class PatientInfo extends Activity {
                     String SMemo = (String)params[6];
                     String SNth = (String)params[7];
 
-                    String link = "http://192.168.0.9/hospitalroom/addpatient.php";
+                    String link = "http://"+serverAddress+"/hospitalroom/addpatient.php";
                     String data = URLEncoder.encode("Name", "UTF-8") + "=" + URLEncoder.encode(SName, "UTF-8");
                     data += "&" + URLEncoder.encode("Sex", "UTF-8") + "=" + URLEncoder.encode(SSex, "UTF-8");
                     data += "&" + URLEncoder.encode("Birth", "UTF-8") + "=" + URLEncoder.encode(SBirth, "UTF-8");
@@ -188,14 +185,13 @@ public class PatientInfo extends Activity {
     {
         try {
             httpclient = new DefaultHttpClient();
-            httppost = new HttpPost("http://192.168.0.9/hospitalroom/duplication.php");
+            httppost = new HttpPost("http://"+serverAddress+"/hospitalroom/duplication.php");
             nameValuePairs = new ArrayList<NameValuePair>(1);
             nameValuePairs.add(new BasicNameValuePair("userid", PName.getText().toString()));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             response = httpclient.execute(httppost);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             final String response = httpclient.execute(httppost, responseHandler);
-
 
             if (response.equalsIgnoreCase("User Found")) {
 
@@ -208,9 +204,7 @@ public class PatientInfo extends Activity {
                 });
                 alert.setMessage("이미 병실에 등록되어 있습니다.");
                 alert.show();
-            }
-            else {
-            }
+            } else {}
         }
         catch(Exception e)
         {
